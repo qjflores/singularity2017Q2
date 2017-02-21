@@ -28,13 +28,13 @@ class App extends Component {
     var self = this
 
     // Get the RPC provider and setup our SimpleStorage contract.
-    const provider = new Web3.providers.HttpProvider('http://localhost:8545')
+    const web3RPC = this.props.web3;
+    const provider = web3RPC.currentProvider;
     const contract = require('truffle-contract')
     const simpleStorage = contract(SimpleStorageContract)
     simpleStorage.setProvider(provider)
 
     // Get Web3 so we can get our accounts.
-    const web3RPC = new Web3(provider)
 
     // Declaring this for later so we can chain functions on SimpleStorage.
     var simpleStorageInstance
